@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Sudoku</title>
+  <style>
+    body{font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;margin:0;padding:0 12px 24px;}
+    header{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 0;border-bottom:1px solid #ddd;}
+    label{font-size:0.9rem;color:#333}
+    .toolbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+    .grid{display:grid;grid-template-columns:repeat(9,40px);grid-template-rows:repeat(9,40px);gap:1px;margin:16px 0;border:2px solid #333;background:#333;user-select:none}
+    .cell{background:#fff;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:600;outline-offset:-3px}
+    .cell.sel{background:#f3f7ff}
+    .cell.fixed{background:#fafafa;color:#333}
+    .cell.conflict{background:#ffefef}
+    .numpad{display:grid;grid-template-columns:repeat(10,34px);gap:6px}
+    .numpad button{padding:8px 4px}
+    .subtle{color:#666;font-size:.9rem}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="toolbar">
+      <button id="new-btn">New</button>
+      <label for="diff-select">Difficulty:</label>
+      <select id="diff-select">
+        <option value="easy">Easy</option>
+        <option value="medium" selected>Medium</option>
+        <option value="hard">Hard</option>
+        <option value="expert">Expert</option>
+      </select>
+      <button id="solve">Solve</button>
+      <button id="validate">Validate</button>
+      <button id="hint">Hint</button>
+      <button id="save">Save</button>
+      <button id="load">Load</button>
+      <label><input type="checkbox" id="auto-candidates"> Show auto-candidates</label>
+    </div>
+    <div class="toolbar">
+      <label>Name: <input id="name-input" placeholder="optional name" /></label>
+      <label>Notes: <input id="notes-input" placeholder="optional notes" size="40"/></label>
+      <span class="subtle">Hotkeys: ? = hint, F = auto-fill singles, arrows/HJKL = move, 1–9 = set, 0/Space/Del = clear</span>
+    </div>
+  </header>
+
+  <main>
+    <div id="grid" class="grid" aria-label="Sudoku grid" role="grid"></div>
+    <div class="numpad" aria-label="Number pad">
+      <button data-num="1">1</button><button data-num="2">2</button><button data-num="3">3</button>
+      <button data-num="4">4</button><button data-num="5">5</button><button data-num="6">6</button>
+      <button data-num="7">7</button><button data-num="8">8</button><button data-num="9">9</button>
+      <button data-num="0">⌫</button>
+    </div>
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

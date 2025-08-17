@@ -1,0 +1,20 @@
+# Go build outputs
+bin/
+*.exe
+*.test
+*.out
+
+# Modules & vendor
+vendor/
+go.sum
+
+# Local data & cache
+data/
+*.cache
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
